@@ -1,5 +1,4 @@
 def all_moves(state):
-    """Generate all valid neighboring states from the current state."""
     position_of_blank = state.index('#')
     state_list = list(state)
 
@@ -37,11 +36,9 @@ def all_moves(state):
     return next_states
 
 def depth_first_search(initial_state, goal_state):
-    """Perform DFS to find a path from initial to goal state."""
     if initial_state == goal_state:
         return 0
     
-    # Stack stores tuples of (state, cost)
     stack = [(initial_state, 0)]
     visited = set()
     
@@ -56,7 +53,6 @@ def depth_first_search(initial_state, goal_state):
         if state == goal_state:
             return cost
         
-        # Generate all neighbors and add to stack
         for move, next_state in all_moves(state):
             if next_state not in visited:
                 step_cost = 5 if move == "UP" else 1
@@ -66,10 +62,8 @@ def depth_first_search(initial_state, goal_state):
     # If no solution found
     return -1
 
-# Read input
 initial_state = input().strip()
 goal_state = input().strip()
-
-# Perform DFS and output the result
 result = depth_first_search(initial_state, goal_state)
+
 print(result)
